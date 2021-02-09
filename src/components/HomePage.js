@@ -2,10 +2,13 @@ import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
 import Question from './Question';
 import Card from '@material-ui/core/Card';
+import NavComp from './Nav';
 
 function HomePage(props) {
     
 	return (
+		<>
+		<NavComp />
 		<Container>
 			<div className='mt-3'>
 				{props.questionsID.map((id) => (
@@ -13,6 +16,7 @@ function HomePage(props) {
 				))}
 			</div>
 		</Container>
+		</>
 	);
 }
 const mapStateToProps = ({ questions }) => {

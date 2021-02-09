@@ -1,10 +1,17 @@
 import React, { useEffect } from 'react';
-import NavComp from './Nav';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitialData } from './../actions/shared';
 import HomePage from './HomePage';
+import CreateQuestion from './CreateQuestion';
+import LoadingBar from 'react-redux-loading';
+import SignIn from './SignIn';
+import LeaderBoard from './LeaderBoard';
+import { ValueProvider } from './ValueContext';
+import ErrorPage from './ErrorPage';
+import PrivateRoute from './PrivateRoute';
 
 function App(props) {
 	useEffect(() => {
@@ -12,9 +19,17 @@ function App(props) {
 	}, []);
 	return (
 		<Router>
-			<div className='App'>
-				<NavComp />
-				<HomePage />
+			<div>
+				<LoadingBar />
+				<ValueProvider>
+					<Switch>
+						<PrivateRoute exact path='/' component={HomePage} />
+						<PrivateRoute path='/add' component={CreateQuestion} />
+						<PrivateRoute path='/leaderboard' component={LeaderBoard} />
+						<Route path='/signin' component={SignIn} />
+						<Route component={ErrorPage} />
+					</Switch>
+				</ValueProvider>
 			</div>
 		</Router>
 	);

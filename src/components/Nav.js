@@ -1,9 +1,23 @@
+import { useContext } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
+// import Tabs from 'react-bootstrap/Tabs';
+// import Tab from 'react-bootstrap/Tab';
+import { Link, useHistory } from 'react-router-dom';
+
+import { ValueContext } from './ValueContext';
 
 function NavComp() {
+	const [value, setValue] = useContext(ValueContext);
+	const [users, setUsers] = useContext(ValueContext);
+	const history = useHistory();
+	function handleLogout() {
+		setUsers();
+
+		history.push('/signin');
+	}
 	return (
 		<>
 			<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
@@ -22,7 +36,7 @@ function NavComp() {
 
 							<NavLink
 								className='ml-5 nav-link'
-								to='/new'
+								to='/add'
 								exact
 								activeClassName='active'
 							>
@@ -38,15 +52,14 @@ function NavComp() {
 							</NavLink>
 						</Nav>
 						<Nav>
-							<p className='nav-link'>Welcome, User</p>
-							<NavLink
-								to='/logout'
-								exact
+							<p className='nav-link'>Welcome, {value}</p>
+							<Link
+								onClick={handleLogout}
 								activeClassName='active'
 								className='nav-link'
 							>
 								Logout
-							</NavLink>
+							</Link>
 						</Nav>
 					</Navbar.Collapse>
 				</Container>
