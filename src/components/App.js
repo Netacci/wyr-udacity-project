@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -28,7 +27,7 @@ function App(props) {
 						<PrivateRoute path='/leaderboard' component={LeaderBoard} />
 						<Route path='/signin' component={SignIn} />
 						<Route component={ErrorPage} />
-					</Switch>
+					</Switch>	
 				</ValueProvider>
 			</div>
 		</Router>

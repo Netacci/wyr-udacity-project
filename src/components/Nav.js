@@ -13,11 +13,14 @@ function NavComp() {
 	const [value, setValue] = useContext(ValueContext);
 	const [users, setUsers] = useContext(ValueContext);
 	const history = useHistory();
-	function handleLogout() {
-		setUsers();
 
+	function handleLogout() {
+		console.log(users);
+		setUsers([]);
 		history.push('/signin');
 	}
+
+	console.log(users);
 	return (
 		<>
 			<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
@@ -53,13 +56,13 @@ function NavComp() {
 						</Nav>
 						<Nav>
 							<p className='nav-link'>Welcome, {value}</p>
-							<Link
+							<a
 								onClick={handleLogout}
 								activeClassName='active'
 								className='nav-link'
 							>
 								Logout
-							</Link>
+							</a>
 						</Nav>
 					</Navbar.Collapse>
 				</Container>

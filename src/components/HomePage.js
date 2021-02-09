@@ -4,10 +4,12 @@ import Question from './Question';
 import Card from '@material-ui/core/Card';
 import NavComp from './Nav';
 
+
 function HomePage(props) {
     
 	return (
 		<>
+		
 		<NavComp />
 		<Container>
 			<div className='mt-3'>
