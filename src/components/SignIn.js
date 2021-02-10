@@ -1,52 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { ValueContext } from './ValueContext';
-
-
-// class SignIn extends Component {
-// 	state = {
-// 		users: ['sarahedo', 'tylermcginnis', 'johndoe'],
-//         value : 'sarahedo'
-// 	};
-
-// 	handleChange = (e) => {
-// 		e.preventDefault();
-//         this.setState({
-//             value: e.target.value
-
-//         })
-
-// 	};
-
-// 	handleSubmit = (e) => {
-
-//        alert(this.state.value)
-
-//        e.preventDefault();
-
-// 	};
-
-// 	render() {
-//         export const AUTHED_ID = this.state.value
-// 		return (
-// 			<form onSubmit={this.handleSubmit}>
-// 				{
-// 					<select onChange={this.handleChange} value={this.state.value}>
-// 						{this.state.users.map((user) => (
-// 							<option key={user} >
-// 								{user}
-// 							</option>
-// 						))}
-// 					</select>
-// 				}
-// 				<button type='submit'>Sign In</button>
-// 			</form>
-// 		);
-// 	}
-// }
-
-// export default SignIn;
+import { ValueContext } from '../contexts/ValueContext';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const SignIn = (props) => {
 	const [value, setValue] = useContext(ValueContext);
@@ -55,7 +12,7 @@ const SignIn = (props) => {
 	const history = useHistory();
 	console.log(value);
 
-    async function handleSubmit(e, tag) {
+	async function handleSubmit(e) {
 		e.preventDefault();
 		try {
 			setError('');
@@ -66,30 +23,43 @@ const SignIn = (props) => {
 			setError('failed lo log');
 		}
 	}
-    console.log(users);
+	console.log(users);
 
 	const handleChange = (e) => {
-        console.log(value);
+		console.log(value);
 		console.log(e.target.value);
 		setValue(e.target.value);
 		console.log(value);
 	};
 
-
-
-
 	return (
-		<form onSubmit={handleSubmit}>
-			{
-				<select onChange={handleChange} value={value}>
-                    <option selected disabled>Please select user</option>
-					{props.users.map((user) => (
-						<option key={user}>{user[0]}</option>
-					))}
-				</select>
-			}
-			<button type='submit'>Sign In</button>
-		</form>
+		<div className=' px-md-0 py-md-0'>
+			<h3 className='mt-4 p-5 text-center'>Would you Rather? </h3>
+			<Form
+				onSubmit={handleSubmit}
+				className='form col-12 col-md-7 col-lg-5 mx-auto mt-5  pt-4 pt-md-5 px-lg-5'
+			>
+				<h3 className=' text-center mt-3 '>Sign In to play</h3>
+				{
+					<Form.Control
+						as='select'
+						defaultValue='Please select user'
+						onChange={handleChange}
+						className='mt-4'
+					>
+						<option disabled>Please select user</option>
+						{props.users.map((user) => (
+							<option key={user}>{user[0]}</option>
+						))}
+					</Form.Control>
+				}
+				<div className='text-center'>
+					<Button className='mt-4 mb-5' variant='primary' type='submit'>
+						Sign In
+					</Button>
+				</div>
+			</Form>
+		</div>
 	);
 };
 

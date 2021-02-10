@@ -3,24 +3,23 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
-// import Tabs from 'react-bootstrap/Tabs';
-// import Tab from 'react-bootstrap/Tab';
-import { Link, useHistory } from 'react-router-dom';
 
-import { ValueContext } from './ValueContext';
+import { useHistory } from 'react-router-dom';
+
+import { ValueContext } from '../contexts/ValueContext';
 
 function NavComp() {
-	const [value, setValue] = useContext(ValueContext);
+	const [value] = useContext(ValueContext);
 	const [users, setUsers] = useContext(ValueContext);
 	const history = useHistory();
 
-	function handleLogout() {
+	function handleLogout(e) {
 		console.log(users);
 		setUsers([]);
+		e.preventDefault();
 		history.push('/signin');
 	}
 
-	console.log(users);
 	return (
 		<>
 			<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
@@ -38,7 +37,7 @@ function NavComp() {
 							</NavLink>
 
 							<NavLink
-								className='ml-5 nav-link'
+								className='ml-l-5 nav-link'
 								to='/add'
 								exact
 								activeClassName='active'
@@ -46,7 +45,7 @@ function NavComp() {
 								New question
 							</NavLink>
 							<NavLink
-								className='ml-5 nav-link'
+								className='ml-l-5 nav-link'
 								to='/leaderboard'
 								exact
 								activeClassName='active'
@@ -54,17 +53,13 @@ function NavComp() {
 								Leaderboard
 							</NavLink>
 						</Nav>
-						<Nav>
-							<p className='nav-link'>Welcome, {value}</p>
-							<a
-								onClick={handleLogout}
-								activeClassName='active'
-								className='nav-link'
-							>
-								Logout
-							</a>
-						</Nav>
 					</Navbar.Collapse>
+					<Nav className='d-flex flex-row mt-3'>
+						<p className='nav-link mr-5'>Welcome {value}</p>
+						<p onClick={handleLogout} className='nav-link logout'>
+							Logout
+						</p>
+					</Nav>
 				</Container>
 			</Navbar>
 		</>

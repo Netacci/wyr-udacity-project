@@ -8,21 +8,24 @@ import CreateQuestion from './CreateQuestion';
 import LoadingBar from 'react-redux-loading';
 import SignIn from './SignIn';
 import LeaderBoard from './LeaderBoard';
-import { ValueProvider } from './ValueContext';
+import { ValueProvider } from '../contexts/ValueContext';
 import ErrorPage from './ErrorPage';
 import PrivateRoute from './PrivateRoute';
+import AnsweredQuestion from './AnsweredQuestion';
 
 function App(props) {
 	useEffect(() => {
 		props.fetchAll();
-	}, []);
+	}, [props]);
 	return (
 		<Router>
 			<div>
 				<LoadingBar />
 				<ValueProvider>
+				
 					<Switch>
 						<PrivateRoute exact path='/' component={HomePage} />
+						<PrivateRoute exact path='/question/:id' component={AnsweredQuestion}/>
 						<PrivateRoute path='/add' component={CreateQuestion} />
 						<PrivateRoute path='/leaderboard' component={LeaderBoard} />
 						<Route path='/signin' component={SignIn} />

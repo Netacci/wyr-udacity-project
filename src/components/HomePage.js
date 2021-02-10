@@ -1,23 +1,35 @@
 import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
 import Question from './Question';
-import Card from '@material-ui/core/Card';
 import NavComp from './Nav';
-
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 
 function HomePage(props) {
-    
 	return (
 		<>
-		
-		<NavComp />
-		<Container>
-			<div className='mt-3'>
-				{props.questionsID.map((id) => (
-					<Card key={id} className='mb-5 p-3 text-center w-50 mx-auto '><Question id={id}></Question></Card>
-				))}
-			</div>
-		</Container>
+			<NavComp />
+			<Container>
+				<Tabs
+					defaultActiveKey='unanswered'
+					className='text-center justify-content-center'
+				>
+					<Tab eventKey='unanswered' title='Unanswered Questions'>
+						<div className='mt-3'>
+							{props.questionsID.map((id) => (
+								<Question key={id} id={id}></Question>
+							))}
+						</div>
+					</Tab>
+					<Tab eventKey='answered' title='Answered Questions'>
+						<div className='mt-3'>
+							{props.questionsID.map((id) => (
+								<Question key={id} id={id}></Question>
+							))}
+						</div>
+					</Tab>
+				</Tabs>
+			</Container>
 		</>
 	);
 }

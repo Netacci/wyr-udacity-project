@@ -15,3 +15,19 @@ body {
 li {
 	list-style: none;
 }
+a,
+p.logout {
+	cursor: pointer;
+}
+/* form */
+.form {
+	background-color: var(--white);
+	box-shadow: 1px 2px 20px rgba(0, 0, 0, 0.1);
+}
+.textarea {
+	border-radius: 4px;
+	border: 1px solid #dad7d7;
+	padding: 10px;
+	font-size: 15px;
+	height: 100px;
+}
