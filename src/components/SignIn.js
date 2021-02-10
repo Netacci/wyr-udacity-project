@@ -4,29 +4,35 @@ import { useHistory } from 'react-router-dom';
 import { ValueContext } from '../contexts/ValueContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { setAuthedUser } from '../actions/authedUser';
 
 const SignIn = (props) => {
 	const [value, setValue] = useContext(ValueContext);
-	const [users, setUsers] = useContext(ValueContext);
-	const [error, setError] = useState('');
+	// const [users, setUsers] = useContext(ValueContext);
+	// const [error, setError] = useState('');
 	const history = useHistory();
 	console.log(value);
 
-	async function handleSubmit(e) {
+	// async function handleSubmit(e) {
+	// 	e.preventDefault();
+	// 	try {
+	// 		setError('');
+	// 		await setUsers(value);
+	// 		console.log(users);
+	// 		history.push('/');
+	// 	} catch {
+	// 		setError('failed lo log');
+	// 	}
+	// }
+	function handleSubmit(e) {
 		e.preventDefault();
-		try {
-			setError('');
-			await setUsers(value);
-			console.log(users);
-			history.push('/');
-		} catch {
-			setError('failed lo log');
-		}
-	}
-	console.log(users);
 
+		props.setAuthedUser(value);
+
+		history.push('/');
+	}
+	console.log(value);
 	const handleChange = (e) => {
-		console.log(value);
 		console.log(e.target.value);
 		setValue(e.target.value);
 		console.log(value);
@@ -63,11 +69,15 @@ const SignIn = (props) => {
 	);
 };
 
-const mapStateToProps = ({ users }, { id }) => {
+const mapStateToProps = ({ users }) => {
 	console.log(users);
 	return {
 		users: Object.entries(users),
 	};
 };
+// add user to setAuthedUser
+const mapDispatchToProps = (dispatch) => ({
+	setAuthedUser: (id) => dispatch(setAuthedUser(id)),
+});
 
-export default connect(mapStateToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

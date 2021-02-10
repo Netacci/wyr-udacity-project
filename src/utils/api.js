@@ -13,3 +13,11 @@ export function getInitialData() {
 		})
 	);
 }
+
+export function saveQuestion(optionOne) {
+	return _saveQuestion(optionOne);
+}
+
+export function saveQuestionAnswer(authedUser, qid, answer) {
+	return _saveQuestionAnswer(authedUser, qid, answer);
+}
