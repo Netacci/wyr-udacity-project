@@ -12,6 +12,9 @@ import { ValueProvider } from '../contexts/ValueContext';
 import ErrorPage from './ErrorPage';
 import PrivateRoute from './PrivateRoute';
 import AnsweredQuestion from './AnsweredQuestion';
+import Answered from './Answered';
+import Unanswered from './Unanswered';
+import UnansweredQuestion from './UnansweredQuestion';
 
 function App(props) {
 	useEffect(() => {
@@ -22,15 +25,25 @@ function App(props) {
 			<div>
 				<LoadingBar />
 				<ValueProvider>
-				
 					<Switch>
 						<PrivateRoute exact path='/' component={HomePage} />
-						<PrivateRoute exact path='/question/:id' component={AnsweredQuestion}/>
+						<PrivateRoute
+							exact
+							path='/question/:id'
+							component={UnansweredQuestion}
+						/>
+						<PrivateRoute
+							exact
+							path='/answer/:id'
+							component={AnsweredQuestion}
+						/>
 						<PrivateRoute path='/add' component={CreateQuestion} />
+						<PrivateRoute path='/unanswered' component={Unanswered} />
+						<PrivateRoute path='/answered' component={Answered} />
 						<PrivateRoute path='/leaderboard' component={LeaderBoard} />
 						<Route path='/signin' component={SignIn} />
 						<Route component={ErrorPage} />
-					</Switch>	
+					</Switch>
 				</ValueProvider>
 			</div>
 		</Router>

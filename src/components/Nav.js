@@ -1,24 +1,22 @@
-import { useContext } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
-
 import { useHistory } from 'react-router-dom';
+import { setAuthedUser } from '../actions/authedUser';
+import { connect } from 'react-redux';
 
-import { ValueContext } from '../contexts/ValueContext';
-
-function NavComp() {
-	const [value] = useContext(ValueContext);
-	const [users, setUsers] = useContext(ValueContext);
+function NavComp(props) {
 	const history = useHistory();
 
 	function handleLogout(e) {
-		console.log(users);
-		setUsers([]);
+		props.setAuthedUser(null);
 		e.preventDefault();
 		history.push('/signin');
 	}
+	console.log(props.authedUser);
+	const user = props.users[props.authedUser];
+	const { name, avatarURL } = user;
 
 	return (
 		<>
@@ -37,7 +35,7 @@ function NavComp() {
 							</NavLink>
 
 							<NavLink
-								className='ml-l-5 nav-link'
+								className='ml-lg-5 nav-link'
 								to='/add'
 								exact
 								activeClassName='active'
@@ -45,7 +43,7 @@ function NavComp() {
 								New question
 							</NavLink>
 							<NavLink
-								className='ml-l-5 nav-link'
+								className='ml-lg-5 nav-link'
 								to='/leaderboard'
 								exact
 								activeClassName='active'
@@ -54,9 +52,20 @@ function NavComp() {
 							</NavLink>
 						</Nav>
 					</Navbar.Collapse>
-					<Nav className='d-flex flex-row mt-3'>
-						<p className='nav-link mr-5'>Welcome {value}</p>
-						<p onClick={handleLogout} className='nav-link logout'>
+					<Nav className='d-flex flex-row'>
+						<p className='nav-link mr-5 mt-1'>
+							Welcome{' '}
+							<span>
+								<img
+									src={avatarURL}
+									alt={`avatar of ${name}`}
+									className='avatar'
+								/>
+							</span>{' '}
+							{name}
+						</p>
+
+						<p onClick={handleLogout} className='nav-link logout mt-4'>
 							Logout
 						</p>
 					</Nav>
@@ -66,4 +75,13 @@ function NavComp() {
 	);
 }
 
-export default NavComp;
+const mapDispatchToProps = (dispatch) => ({
+	setAuthedUser: (id) => dispatch(setAuthedUser(id)),
+});
+const mapStateToProps = (state) => {
+	return {
+		users: state.users,
+		authedUser: state.authedUser,
+	};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(NavComp);

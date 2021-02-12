@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { ValueContext } from '../contexts/ValueContext';
@@ -8,22 +8,9 @@ import { setAuthedUser } from '../actions/authedUser';
 
 const SignIn = (props) => {
 	const [value, setValue] = useContext(ValueContext);
-	// const [users, setUsers] = useContext(ValueContext);
-	// const [error, setError] = useState('');
 	const history = useHistory();
 	console.log(value);
 
-	// async function handleSubmit(e) {
-	// 	e.preventDefault();
-	// 	try {
-	// 		setError('');
-	// 		await setUsers(value);
-	// 		console.log(users);
-	// 		history.push('/');
-	// 	} catch {
-	// 		setError('failed lo log');
-	// 	}
-	// }
 	function handleSubmit(e) {
 		e.preventDefault();
 
@@ -32,10 +19,10 @@ const SignIn = (props) => {
 		history.push('/');
 	}
 	console.log(value);
+
 	const handleChange = (e) => {
 		console.log(e.target.value);
 		setValue(e.target.value);
-		console.log(value);
 	};
 
 	return (

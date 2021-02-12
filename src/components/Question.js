@@ -1,27 +1,36 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import CardContent from '@material-ui/core/CardContent';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
-import { formatQuestion } from './../utils/helper';
 import Card from '@material-ui/core/Card';
+import { handleSaveAnswer } from './../actions/questions';
 
 function Question(props) {
-	const { question } = props;
-	const { name, avatarURL, optionOne, optionTwo, id } = question;
-	const [checked, setChecked] = useState(false)
+	const { question, user, id, authedUser } = props;
+	const { optionOne, optionTwo } = question;
+	const { name, avatarURL } = user;
+	const [checked, setChecked] = useState(false);
 	const history = useHistory();
+	console.log(question);
+	console.log(user);
+	console.log(authedUser);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		history.push(`/question/${id}`);
+
+		const answer = e.target['questions']['value'];
+		const qid = question.id;
+		console.log(authedUser);
+		console.log(answer);
+		console.log(qid);
+		props.handleSaveAnswer({ qid, answer, authedUser });
+		history.push(`/answer/${id}`);
 	};
-	const handleChange=(e)=>{
-		
-		
-		setChecked(true)
-	}
+	const handleChange = (e) => {
+		setChecked(true);
+	};
 
 	return (
 		<>
@@ -35,10 +44,28 @@ function Question(props) {
 
 				<CardContent className='justify-content-center d-flex'>
 					<Form onSubmit={handleSubmit}>
-						<Form.Check type='radio' label={optionOne.text} name='questions' checked={checked} value='optionOne' onChange={handleChange} />
-						<Form.Check type='radio' label={optionTwo.text} name='questions' checked={checked} value='optionTwo' onChange={handleChange}/>
+						<Form.Check
+							type='radio'
+							label={optionOne.text}
+							name='questions'
+							checked={checked}
+							value='optionOne'
+							onChange={handleChange}
+						/>
+						<Form.Check
+							type='radio'
+							label={optionTwo.text}
+							name='questions'
+							checked={checked}
+							value='optionTwo'
+							onChange={handleChange}
+						/>
 						<div className='text-center'>
-							<Button className='mt-3' type='submit' disabled={checked===false}>
+							<Button
+								className='mt-3'
+								type='submit'
+								disabled={checked === false}
+							>
 								Submit
 							</Button>
 						</div>
@@ -49,15 +76,23 @@ function Question(props) {
 	);
 }
 
-function mapStateToProps({ questions, users }, { id }) {
-	const question = questions[id];
+function mapStateToProps({ questions, users, authedUser }, { id }) {
+	const question = questions ? questions[id] : null;
+	const user = question ? users[question.author] : {};
 
-	console.log(question);
+	console.log(question.id);
 	console.log(users);
 	return {
 		// users: users[question.author],
-		question: formatQuestion(question, users[question.author]),
+		question,
+		user,
+		id,
+		authedUser,
 	};
 }
+const mapDispatchToProps = (dispatch) => ({
+	handleSaveAnswer: ({ qid, authedUser, answer }) =>
+		dispatch(handleSaveAnswer({ qid, authedUser, answer })),
+});
 
-export default connect(mapStateToProps)(Question);
+export default connect(mapStateToProps, mapDispatchToProps)(Question);

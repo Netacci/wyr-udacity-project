@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Answer from './Answer';
+import Question from './Question';
 import NavComp from './Nav';
 
-function AnsweredQuestion(props) {
+function UnansweredQuestion(props) {
 	console.log(props);
 	return (
 		<>
 			<NavComp />
-			<Answer id={props.id} />;
+			<Question id={props.id} />;
 		</>
 	);
 }
@@ -20,4 +20,4 @@ function mapStateToProps({ authedUser, tweets, users, questions }, props) {
 		id,
 	};
 }
-export default connect(mapStateToProps)(AnsweredQuestion);
+export default connect(mapStateToProps)(UnansweredQuestion);
