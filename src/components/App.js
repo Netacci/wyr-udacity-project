@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -16,43 +16,90 @@ import Answered from './Answered';
 import Unanswered from './Unanswered';
 import UnansweredQuestion from './UnansweredQuestion';
 
-function App(props) {
-	useEffect(() => {
-		props.fetchAll();
-	}, [props]);
-	return (
-		<Router>
-			<div>
-				<LoadingBar />
-				<ValueProvider>
-					<Switch>
-						<PrivateRoute exact path='/' component={HomePage} />
-						<PrivateRoute
-							exact
-							path='/question/:id'
-							component={UnansweredQuestion}
-						/>
-						<PrivateRoute
-							exact
-							path='/answer/:id'
-							component={AnsweredQuestion}
-						/>
-						<PrivateRoute path='/add' component={CreateQuestion} />
-						<PrivateRoute path='/unanswered' component={Unanswered} />
-						<PrivateRoute path='/answered' component={Answered} />
-						<PrivateRoute path='/leaderboard' component={LeaderBoard} />
-						<Route path='/signin' component={SignIn} />
-						<Route component={ErrorPage} />
-					</Switch>
-				</ValueProvider>
-			</div>
-		</Router>
-	);
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchAll();
+  }
+  componentDidUpdate() {
+    this.props.fetchAll();
+  }
+  shouldComponentUpdate() {
+    this.props.fetchAll();
+  }
+
+  state = {};
+  render() {
+    return (
+      <Router>
+        <div>
+          <LoadingBar />
+          <ValueProvider>
+            <Switch>
+              <PrivateRoute exact path='/' component={HomePage} />
+              <PrivateRoute
+                exact
+                path='/question/:id'
+                component={UnansweredQuestion}
+              />
+              <PrivateRoute
+                exact
+                path='/answer/:id'
+                component={AnsweredQuestion}
+              />
+              <PrivateRoute path='/add' component={CreateQuestion} />
+              <PrivateRoute path='/unanswered' component={Unanswered} />
+              <PrivateRoute path='/answered' component={Answered} />
+              <PrivateRoute path='/leaderboard' component={LeaderBoard} />
+              <Route path='/signin' component={SignIn} />
+              <Route component={ErrorPage} />
+            </Switch>
+          </ValueProvider>
+        </div>
+      </Router>
+    );
+  }
 }
+
+// export default App;
+
+// function App(props) {
+//   useEffect(() => {
+//     props.fetchAll();
+//   }, [props]);
+//   return (
+//     <Router>
+//       <div>
+//         <LoadingBar />
+//         <ValueProvider>
+//           <Switch>
+//             <PrivateRoute exact path='/' component={HomePage} />
+//             <PrivateRoute
+//               exact
+//               path='/question/:id'
+//               component={UnansweredQuestion}
+//             />
+//             <PrivateRoute
+//               exact
+//               path='/answer/:id'
+//               component={AnsweredQuestion}
+//             />
+//             <PrivateRoute path='/add' component={CreateQuestion} />
+//             <PrivateRoute path='/unanswered' component={Unanswered} />
+//             <PrivateRoute path='/answered' component={Answered} />
+//             <PrivateRoute path='/leaderboard' component={LeaderBoard} />
+//             <Route path='/signin' component={SignIn} />
+//             <Route component={ErrorPage} />
+//           </Switch>
+//         </ValueProvider>
+//       </div>
+//     </Router>
+//   );
+// }
+
 const mapDispatchToProps = (dispatch) => {
-	return {
-		fetchAll: () => dispatch(handleInitialData()),
-	};
+  return {
+    fetchAll: () => dispatch(handleInitialData()),
+  };
 };
 
 export default connect(null, mapDispatchToProps)(App);
