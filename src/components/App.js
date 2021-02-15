@@ -17,47 +17,41 @@ import Unanswered from './Unanswered';
 import UnansweredQuestion from './UnansweredQuestion';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchAll();
-  }
-  componentDidUpdate() {
-    this.props.fetchAll();
-  }
-  shouldComponentUpdate() {
-    this.props.fetchAll();
-  }
+	componentDidMount() {
+		this.props.fetchAll();
+		this.forceUpdate();
+	}
 
-  state = {};
-  render() {
-    return (
-      <Router>
-        <div>
-          <LoadingBar />
-          <ValueProvider>
-            <Switch>
-              <PrivateRoute exact path='/' component={HomePage} />
-              <PrivateRoute
-                exact
-                path='/question/:id'
-                component={UnansweredQuestion}
-              />
-              <PrivateRoute
-                exact
-                path='/answer/:id'
-                component={AnsweredQuestion}
-              />
-              <PrivateRoute path='/add' component={CreateQuestion} />
-              <PrivateRoute path='/unanswered' component={Unanswered} />
-              <PrivateRoute path='/answered' component={Answered} />
-              <PrivateRoute path='/leaderboard' component={LeaderBoard} />
-              <Route path='/signin' component={SignIn} />
-              <Route component={ErrorPage} />
-            </Switch>
-          </ValueProvider>
-        </div>
-      </Router>
-    );
-  }
+	render() {
+		return (
+			<Router>
+				<div>
+					<LoadingBar />
+					<ValueProvider>
+						<Switch>
+							<PrivateRoute exact path='/' component={HomePage} />
+							<PrivateRoute
+								exact
+								path='/question/:id'
+								component={UnansweredQuestion}
+							/>
+							<PrivateRoute
+								exact
+								path='/answer/:id'
+								component={AnsweredQuestion}
+							/>
+							<PrivateRoute path='/add' component={CreateQuestion} />
+							<PrivateRoute path='/unanswered' component={Unanswered} />
+							<PrivateRoute path='/answered' component={Answered} />
+							<PrivateRoute path='/leaderboard' component={LeaderBoard} />
+							<Route path='/signin' component={SignIn} />
+							<Route component={ErrorPage} />
+						</Switch>
+					</ValueProvider>
+				</div>
+			</Router>
+		);
+	}
 }
 
 // export default App;
@@ -97,9 +91,9 @@ class App extends Component {
 // }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchAll: () => dispatch(handleInitialData()),
-  };
+	return {
+		fetchAll: () => dispatch(handleInitialData()),
+	};
 };
 
 export default connect(null, mapDispatchToProps)(App);

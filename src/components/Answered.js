@@ -6,26 +6,35 @@ import TabsComp from './Tabs';
 import ViewPollAnswer from './ViewPollAnswer';
 
 class Answered extends Component {
-  render() {
-    const { answeredq } = this.props;
-    return (
-      <>
-        <NavComp />
+	componentDidMount() {
+		this.forceUpdate();
+	}
+	filterAnswer = (questionsID, authedUserAnswersID) => {
+		const filtered = questionsID.filter((el) => {
+			return authedUserAnswersID.indexOf(el) !== -1;
+		});
+		return filtered;
+	};
+	render() {
+		const { questionsID, authedUserAnswersID } = this.props;
+		return (
+			<>
+				<NavComp />
 
-        <Container>
-          <TabsComp />
-          <div className='mt-3'>
-            {answeredq.map((id) => (
-              <ViewPollAnswer key={id} id={id} />
-            ))}
-            {/* {props.questionsID.map((id) => (
+				<Container>
+					<TabsComp />
+					<div className='mt-3'>
+						{this.filterAnswer(questionsID, authedUserAnswersID).map((id) => (
+							<ViewPollAnswer key={id} id={id} />
+						))}
+						{/* {props.questionsID.map((id) => (
 						<Question key={id} id={id}></Question>
 					))} */}
-          </div>
-        </Container>
-      </>
-    );
-  }
+					</div>
+				</Container>
+			</>
+		);
+	}
 }
 
 // export default Answered;
@@ -62,28 +71,28 @@ class Answered extends Component {
 //   );
 // }
 const mapStateToProps = ({ questions, users, authedUser }) => {
-  const questionsID = Object.keys(questions).sort(
-    (a, b) => questions[b].timestamp - questions[a].timestamp
-  );
-  const authedUserID = authedUser === null ? {} : users[authedUser].answers;
-  let authedUserAnswer = authedUserID ? Object.keys(authedUserID) : [];
-  authedUserAnswer = questionsID.filter((qid) =>
-    authedUserAnswer.includes(qid)
-  );
+	// const questionsID = Object.keys(questions).sort(
+	// 	(a, b) => questions[b].timestamp - questions[a].timestamp
+	// );
+	const authedUserID = authedUser === null ? {} : users[authedUser].answers;
+	// let authedUserAnswer = authedUserID ? Object.keys(authedUserID) : [];
+	// authedUserAnswer = questionsID.filter((qid) =>
+	// 	authedUserAnswer.includes(qid)
+	// );
 
-  console.log(authedUserID);
-  console.log(users);
-  console.log(authedUser);
-  return {
-    // questionsID: Object.keys(questions).sort(
-    //   (a, b) => questions[b].timestamp - questions[a].timestamp
-    // ),
-    users: Object.entries(users),
-    authedUser: users[authedUser],
-    // questions: Object.keys(questions),
-    answeredq: authedUserAnswer,
-    // authedUserAnswersID: Object.keys(authedUserID),
-  };
+	console.log(authedUserID);
+	console.log(users);
+	console.log(authedUser);
+	return {
+		questionsID: Object.keys(questions).sort(
+			(a, b) => questions[b].timestamp - questions[a].timestamp
+		),
+		users: Object.entries(users),
+		authedUser: users[authedUser],
+		// questions: Object.keys(questions),
+		// answeredq: authedUserAnswer,
+		authedUserAnswersID: Object.keys(authedUserID),
+	};
 };
 // const mapDispatchToProps = (dispatch) => {
 //   return {
