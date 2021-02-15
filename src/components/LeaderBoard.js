@@ -2,16 +2,19 @@ import React from 'react';
 import NavComp from './Nav';
 import { connect } from 'react-redux';
 import Poll from './Poll';
+import Container from 'react-bootstrap/Container';
 
 function LeaderBoard(props) {
 	const { users } = props;
 	return (
-		<div>
+		<>
 			<NavComp />
-			{users.map((id) => (
-				<Poll key={id} id={id} />
-			))}
-		</div>
+			<Container>
+				{users.map((id) => (
+					<Poll key={id} id={id} />
+				))}
+			</Container>
+		</>
 	);
 }
 

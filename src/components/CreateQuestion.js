@@ -8,31 +8,16 @@ import { handleAddQuestion } from '../actions/questions';
 import Card from '@material-ui/core/Card';
 
 function CreateQuestion(props) {
-	// const [textOne, setTextOne] = useState('');
-	// const [textTwo, setTextTwo] = useState('');
-
-	// const [authedUser, setAuthedUser] = useState(props.authedUser);
 	const history = useHistory();
-
-	// const handleChange = (e) => {
-	// 	setTextOne({ [e.target.name]: e.target.value }) ;
-	// 	// const optionTwo = e.target.name;
-	// 	// const [e.target.name] = e.target.value
-	// 	// setTextOne(optionOne);
-	// 	setTextTwo({ [e.target.name]: e.target.value });
-	// };
-	// console.log(textOne);
-	// console.log(textTwo);
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		// make sure the variable name matches the one in formatted question in data.js
 		const optionOneText = e.target['textOne']['value'];
 		const optionTwoText = e.target['textTwo']['value'];
-
 		// store authedUser in a variable called author(data.js accepts question.author)
 		const author = props.authedUser;
+
 		if (optionOneText === '' || optionTwoText === '') {
 			return false;
 		}
@@ -65,9 +50,7 @@ function CreateQuestion(props) {
 							<Form.Control
 								type='text'
 								placeholder='Option One'
-								// onChange={handleChange}
 								name='textOne'
-								// value={textOne}
 							/>
 						</Form.Group>
 
@@ -76,17 +59,11 @@ function CreateQuestion(props) {
 							<Form.Control
 								type='text'
 								placeholder='Option Two'
-								// onChange={handleChange}
 								name='textTwo'
-								// value={textTwo}
 							/>
 						</Form.Group>
 						<div className='text-center'>
-							<Button
-								className='mt-4 mb-4'
-								type='submit'
-								// disabled={textOne === '' || textTwo === ''}
-							>
+							<Button className='mt-4 mb-4' type='submit'>
 								Submit
 							</Button>
 						</div>

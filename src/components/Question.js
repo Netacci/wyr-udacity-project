@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import CardContent from '@material-ui/core/CardContent';
 import Form from 'react-bootstrap/Form';
@@ -11,7 +11,7 @@ function Question(props) {
 	const { question, user, id, authedUser } = props;
 	const { optionOne, optionTwo } = question;
 	const { name, avatarURL, answers } = user;
-	const [checked, setChecked] = useState(false);
+	const [answer, setAnswer] = useState('');
 
 	const history = useHistory();
 	const qid = question.id;
@@ -24,7 +24,7 @@ function Question(props) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		const answer = e.target['questions']['value'];
+		// const answer = e.target['questions']['value'];
 
 		console.log(authedUser);
 		console.log(answer);
@@ -34,12 +34,12 @@ function Question(props) {
 		history.push(`/answer/${id}`);
 	};
 	const handleChange = (e) => {
-		setChecked(true);
+		setAnswer(e.target.value);
 	};
 
 	return (
 		<>
-			<Card key={id} className='mb-5 p-3  w-50 mx-auto '>
+			<Card className='mb-5 p-3  w-50 mx-auto '>
 				<div className='d-flex flex-row'>
 					<img src={avatarURL} alt={`avatar of ${name}`} className='avatar' />
 					<p className='ml-4 mt-4 text'>{name}</p>
@@ -53,7 +53,7 @@ function Question(props) {
 							type='radio'
 							label={optionOne.text}
 							name='questions'
-							checked={checked}
+							checked={answer === 'optionOne'}
 							value='optionOne'
 							onChange={handleChange}
 						/>
@@ -61,16 +61,12 @@ function Question(props) {
 							type='radio'
 							label={optionTwo.text}
 							name='questions'
-							checked={checked}
+							checked={answer === 'optionTwo'}
 							value='optionTwo'
 							onChange={handleChange}
 						/>
 						<div className='text-center'>
-							<Button
-								className='mt-3'
-								type='submit'
-								disabled={checked === false}
-							>
+							<Button className='mt-3' type='submit' disabled={answer === ''}>
 								Submit
 							</Button>
 						</div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import CardContent from '@material-ui/core/CardContent';
 import Form from 'react-bootstrap/Form';
@@ -8,7 +8,7 @@ import Card from '@material-ui/core/Card';
 
 function ViewPoll(props) {
 	const { question, user, id } = props;
-	const { optionOne, optionTwo } = question;
+	const { optionOne } = question;
 	const { name, avatarURL } = user;
 	const history = useHistory();
 
@@ -29,8 +29,8 @@ function ViewPoll(props) {
 
 				<CardContent className='justify-content-center d-flex'>
 					<Form onSubmit={handleSubmit}>
-                        <p>...{optionOne.text}</p>
-					
+						<p>...{optionOne.text}</p>
+
 						<div className='text-center'>
 							<Button className='mt-3' type='submit'>
 								View Poll

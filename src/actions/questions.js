@@ -22,14 +22,6 @@ export function handleAddQuestion(q) {
 	};
 }
 
-// function saveAnswer(qid, answer, authedUser) {
-// 	return {
-// 		type: SAVE_ANSWER,
-// 		qid,
-// 		answer,
-// 		authedUser,
-// 	};
-// }
 function saveAnswer({ authedUser, qid, answer }) {
 	return {
 		type: SAVE_ANSWER,
@@ -46,14 +38,6 @@ export function handleSaveAnswer(info) {
 		});
 	};
 }
-// export function handleSaveAnswer(answer) {
-//   return async (dispatch) => {
-//     dispatch(showLoading());
-//     await _saveQuestionAnswer(answer);
-//     dispatch(saveAnswer(answer));
-//     return dispatch(hideLoading());
-//   };
-// }
 
 export function receiveQuestions(questions) {
 	return {
