@@ -7,7 +7,7 @@ import ViewPollAnswer from './ViewPollAnswer';
 
 class Answered extends Component {
 	componentDidMount() {
-		this.forceUpdate();
+		this.setState({});
 	}
 	filterAnswer = (questionsID, authedUserAnswersID) => {
 		const filtered = questionsID.filter((el) => {

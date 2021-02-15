@@ -19,7 +19,6 @@ import UnansweredQuestion from './UnansweredQuestion';
 class App extends Component {
 	componentDidMount() {
 		this.props.fetchAll();
-		this.forceUpdate();
 	}
 
 	render() {

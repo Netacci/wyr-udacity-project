@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
 import ViewPoll from './ViewPoll';
@@ -9,6 +9,7 @@ function Unanswered(props) {
 	console.log(users);
 	console.log(authedUser);
 	console.log(authedUser.answers);
+
 	//   console.log(authedUserAnswersID);
 	// function to seperate unanswered questions
 	const filterAnswer = (questionsID, authedUserAnswersID) => {
@@ -17,6 +18,7 @@ function Unanswered(props) {
 		});
 		return filtered;
 	};
+
 	console.log(filterAnswer(questionsID, authedUserAnswersID));
 	// console.log(questions);
 

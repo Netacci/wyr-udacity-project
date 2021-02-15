@@ -6,13 +6,13 @@ import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import { handleSaveAnswer } from './../actions/questions';
-import { CompleteContext } from '../contexts/ValueContext';
 
 function Question(props) {
 	const { question, user, id, authedUser } = props;
 	const { optionOne, optionTwo } = question;
 	const { name, avatarURL, answers } = user;
 	const [checked, setChecked] = useState(false);
+
 	const history = useHistory();
 	const qid = question.id;
 	console.log(question);
