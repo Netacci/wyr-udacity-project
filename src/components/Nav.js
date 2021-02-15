@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser';
 import { connect } from 'react-redux';
+import { FiLogOut } from 'react-icons/fi';
 
 function NavComp(props) {
   const history = useHistory();
@@ -66,12 +67,10 @@ function NavComp(props) {
                 {name}
               </div>
 
-              <div
+              <FiLogOut
                 onClick={handleLogout}
                 className='nav-link logout mt-lg-4 mt-1'
-              >
-                Logout
-              </div>
+              />
             </Nav>
           </Navbar.Collapse>
         </Container>
