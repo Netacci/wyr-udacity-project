@@ -15,9 +15,14 @@ body {
 li {
 	list-style: none;
 }
-a,
-p.logout {
+a{
 	cursor: pointer;
+}
+.logout {
+	cursor: pointer;
+	font-size: 2.5rem;
+    color: #fff;
+	transition: all .3s linear;
 }
 /* form */
 .form {
@@ -30,4 +35,45 @@ p.logout {
 	padding: 10px;
 	font-size: 15px;
 	height: 100px;
+}
+.text-lg{
+	font-size: 2rem;
+}
+.text{
+	font-size: 1rem;
+}
+.text-white{
+	color:#fff;
+}
+/* #1d306e  #313c63 ; */
+.vote{
+	
+	background-color:#1d306e ;
+	color: #dad7d7;
+	padding: 0.5rem;
+}
+.w-sm{
+	width: 100%;
+}
+
+.score{
+	background-color:#4c6cd4 ;
+	padding: 1rem;
+	color:#fff;
+	margin-top: -10%;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+.txt{
+font-size: 1.5rem;
+}
+
+@media all and (min-width: 992px){
+	.w-sm{
+		width: 50%;
+	}
+	.txt{
+		font-size: 2rem;
+		}
+		
 }

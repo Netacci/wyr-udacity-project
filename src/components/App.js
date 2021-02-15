@@ -49,6 +49,7 @@ function App(props) {
 		</Router>
 	);
 }
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchAll: () => dispatch(handleInitialData()),

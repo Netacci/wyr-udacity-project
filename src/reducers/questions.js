@@ -15,7 +15,9 @@ export default function questions(state = {}, action) {
 			return {
 				...state,
 				[action.question.id]: action.question,
+				// ...state[users][authedUser][answers], [action.question.id]: [value]
 			};
+
 		case SAVE_ANSWER:
 			const { authedUser, qid, answer } = action;
 			return {
@@ -24,7 +26,7 @@ export default function questions(state = {}, action) {
 					...state[qid],
 					[answer]: {
 						...state[qid][answer],
-						votes: { ...state[qid][answer].votes, authedUser },
+						votes: [...state[qid][answer].votes, authedUser],
 					},
 				},
 			};

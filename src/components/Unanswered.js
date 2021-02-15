@@ -1,14 +1,15 @@
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
 import ViewPoll from './ViewPoll';
 
 function Unanswered(props) {
 	console.log(props.questionsID);
-	const { users, authedUser, authedUserAnswersID, questionsID } = props;
+	const { users, authedUser, questionsID, authedUserAnswersID } = props;
 	console.log(users);
 	console.log(authedUser);
 	console.log(authedUser.answers);
-	console.log(authedUserAnswersID);
+
 	// function to seperate unanswered questions
 	const filterAnswer = (questionsID, authedUserAnswersID) => {
 		const filtered = questionsID.filter((el) => {
@@ -16,6 +17,7 @@ function Unanswered(props) {
 		});
 		return filtered;
 	};
+
 	console.log(filterAnswer(questionsID, authedUserAnswersID));
 
 	return (
@@ -31,7 +33,7 @@ function Unanswered(props) {
 	);
 }
 
-const mapStateToProps = ({ questions, users, authedUser }) => {
+const mapStateToProps = ({ users, questions, authedUser }) => {
 	const authedUserID = authedUser === null ? {} : users[authedUser].answers;
 	console.log(authedUserID);
 	console.log(users);

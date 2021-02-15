@@ -1,13 +1,14 @@
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
 import NavComp from './Nav';
 import TabsComp from './Tabs';
-import ViewPoll from './ViewPoll';
 import ViewPollAnswer from './ViewPollAnswer';
 
 function Answered(props) {
-  const { users, authedUser, authedUserAnswersID, questionsID } = props;
-  // function to seperate unanswered questions
+  const { questionsID, authedUserAnswersID } = props;
+
+  //   function to seperate unanswered questions
   const filterAnswer = (questionsID, authedUserAnswersID) => {
     const filtered = questionsID.filter((el) => {
       return authedUserAnswersID.indexOf(el) !== -1;
@@ -20,7 +21,6 @@ function Answered(props) {
   return (
     <>
       <NavComp />
-
       <Container>
         <TabsComp />
         <div className='mt-3'>
@@ -32,7 +32,7 @@ function Answered(props) {
     </>
   );
 }
-const mapStateToProps = ({ questions, users, authedUser }, answers) => {
+const mapStateToProps = ({ questions, users, authedUser }) => {
   const authedUserID = authedUser === null ? {} : users[authedUser].answers;
   console.log(authedUserID);
   console.log(users);
