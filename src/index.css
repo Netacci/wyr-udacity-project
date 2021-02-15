@@ -31,3 +31,37 @@ p.logout {
 	font-size: 15px;
 	height: 100px;
 }
+.text-lg{
+	font-size: 2rem;
+}
+.text{
+	font-size: 1rem;
+}
+.text-white{
+	color:#fff;
+}
+/* #1d306e  #313c63 ; */
+.vote{
+	
+	background-color:#1d306e ;
+	color: #dad7d7;
+	padding: 0.5rem;
+}
+.w-sm{
+	width: 100%;
+}
+
+.score{
+	background-color:#4c6cd4 ;
+	padding: 1rem;
+	color:#fff;
+	margin-top: -10%;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+@media all and (min-width: 768px){
+	.w-sm{
+		width: 50%;
+	}
+}

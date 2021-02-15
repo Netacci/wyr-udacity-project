@@ -12,7 +12,7 @@ function TabComp() {
         expand='lg'
         bg='dark'
         variant='dark'
-        className='mt-4 w-50 mx-auto'
+        className='mt-4 w-sm mx-auto'
       >
         <Container className='justify-content-center'>
           <Nav className=''>
