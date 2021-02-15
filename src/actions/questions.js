@@ -7,43 +7,35 @@ export const ADD_QUESTION = 'ADD_QUESTION';
 export const SAVE_ANSWER = 'SAVE_ANSWER';
 
 function addQuestion(question) {
-	return {
-		type: ADD_QUESTION,
-		question,
-	};
+  return {
+    type: ADD_QUESTION,
+    question,
+  };
 }
 
 export function handleAddQuestion(q) {
-	return async (dispatch) => {
-		dispatch(showLoading());
-		const question = await saveQuestion(q);
-		dispatch(addQuestion(question));
-		return dispatch(hideLoading());
-	};
+  return async (dispatch) => {
+    dispatch(showLoading());
+    const question = await saveQuestion(q);
+    dispatch(addQuestion(question));
+    return dispatch(hideLoading());
+  };
 }
 
-// function saveAnswer(qid, answer, authedUser) {
-// 	return {
-// 		type: SAVE_ANSWER,
-// 		qid,
-// 		answer,
-// 		authedUser,
-// 	};
-// }
 function saveAnswer(ans) {
-	return {
-		type: SAVE_ANSWER,
-		ans,
-	};
+  return {
+    type: SAVE_ANSWER,
+    ans,
+  };
 }
 export function handleSaveAnswer(qid, answer) {
-	return async (dispatch, getState) => {
-		const { authedUser } = getState();
-		dispatch(showLoading());
-		const ans = await saveQuestionAnswer({ qid, answer, authedUser });
-		dispatch(saveAnswer(ans));
-		return dispatch(hideLoading());
-	};
+  return async (dispatch, getState) => {
+    const { authedUser } = getState();
+    dispatch(showLoading());
+    const ans = await saveQuestionAnswer({ qid, answer, authedUser });
+    dispatch(saveAnswer(ans));
+    return dispatch(hideLoading());
+  };
 }
 // export function handleSaveAnswer(answer) {
 // 	return async (dispatch) => {
@@ -63,8 +55,8 @@ export function handleSaveAnswer(qid, answer) {
 // }
 
 export function receiveQuestions(questions) {
-	return {
-		type: RECEIVE_QUESTIONS,
-		questions,
-	};
+  return {
+    type: RECEIVE_QUESTIONS,
+    questions,
+  };
 }
