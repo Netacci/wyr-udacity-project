@@ -12,7 +12,7 @@ function Poll(props) {
 
   return (
     <>
-      <Card className='mb-5 p-3  w-sm mx-auto '>
+      <Card className='mb-5 p-3 w-sm mx-auto '>
         <div className='d-flex flex-row mt-4'>
           <img
             src={user.avatarURL}

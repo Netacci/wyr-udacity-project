@@ -37,7 +37,7 @@ function Question(props) {
                 ? { backgroundColor: '#516bcc' }
                 : { backgroundColor: 'none' }
             }
-            className='mb-5 p-3  w-50 mx-auto '
+            className='mb-5 p-3  w-sm mx-auto '
           >
             {optionOne.votes.includes(authedUser.id) ? (
               <div className='vote '>Your Vote</div>
@@ -59,7 +59,7 @@ function Question(props) {
                 ? { backgroundColor: '#516bcc' }
                 : { backgroundColor: 'none' }
             }
-            className='mb-5 p-3  w-50 mx-auto'
+            className='mb-5 p-3  w-sm mx-auto'
           >
             {optionTwo.votes.includes(authedUser.id) ? (
               <div className='vote'>Your Vote</div>

@@ -35,13 +35,13 @@ function CreateQuestion(props) {
     <div>
       <NavComp />
       <div>
-        <Card className='mt-5 col-7 mx-auto '>
+        <Card className='mt-5 col-md-7 col-12 mx-auto '>
           <div className='d-flex flex-row justify-content-center'>
             <img src={avatarURL} alt={`avatar of ${name}`} className='avatar' />
             <p className='ml-4 mt-4 text'>{name}</p>
           </div>
 
-          <h3 className='text-center mt-4'>Would you rather?</h3>
+          <h3 className='text-center mt-4 txt'>Would you rather?</h3>
           <Form
             className='col-12 col-md-7 col-lg-6 mx-auto mt-4  pt-4 pt-md-5 px-lg-5'
             onSubmit={handleSubmit}
