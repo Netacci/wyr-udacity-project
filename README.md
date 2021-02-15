@@ -2,11 +2,11 @@
 
 This is a game of 'would you rather' were the user has to pick one of the two options from a question.
 
-User can also create their own questions, view answered questions and see a leaderboard of scores.
+User can also create their own questions, view answered questions and see a leaderboard of high scoring users.
 
 Users have to sign in to play or create questions.
 
-This project was built with React, Redux and Bootstrapand is the second project for the Udacity React Nanodegree.
+This project was built with React, Redux and Bootstrap. It is the second project for the Udacity React Nanodegree.
 
 ## Installation
 
