@@ -22,7 +22,7 @@ function Question(props) {
 
   return (
     <>
-      <Card key={id} className='mb-5 p-3  w-50 mx-auto '>
+      <Card key={id} className='mb-5 p-3  w-sm mx-auto '>
         <div className='d-flex flex-row'>
           <img src={avatarURL} alt={`avatar of ${name}`} className='avatar' />
           <p className='ml-4 mt-4 text'>Asked by {name}</p>
@@ -30,17 +30,21 @@ function Question(props) {
 
         <h5 className='text-center'>Results:</h5>
 
-        <CardContent className='d-flex flex-column text-center'>
+        <CardContent className='d-flex flex-column text-center '>
           <Card
             style={
               optionOne.votes.includes(authedUser.id)
-                ? { backgroundColor: '#5ebb5e' }
+                ? { backgroundColor: '#516bcc' }
                 : { backgroundColor: 'none' }
             }
-            className='mb-5 p-3  w-50 mx-auto'
+            className='mb-5 p-3  w-sm mx-auto '
           >
-            <p>{optionOne.votes.includes(authedUser.id) ? 'Your Vote' : ''} </p>
-            <p>{optionOne.text}</p>
+            {optionOne.votes.includes(authedUser.id) ? (
+              <div className='vote '>Your Vote</div>
+            ) : (
+              ''
+            )}
+            <p className='mt-3'>{optionOne.text}</p>
             <p>{`${optionOne.votes.length} out of ${users.length} votes`}</p>
             <ProgressBar
               now={Math.round((optionOne.votes.length / users.length) * 100)}
@@ -52,15 +56,18 @@ function Question(props) {
           <Card
             style={
               optionTwo.votes.includes(authedUser.id)
-                ? { backgroundColor: '#5ebb5e' }
+                ? { backgroundColor: '#516bcc' }
                 : { backgroundColor: 'none' }
             }
-            className='mb-5 p-3  w-50 mx-auto'
+            className='mb-5 p-3  w-sm mx-auto'
           >
-            <p>{optionTwo.votes.includes(authedUser.id) ? 'Your Vote' : ''} </p>
-            <p>{optionTwo.text}</p>
+            {optionTwo.votes.includes(authedUser.id) ? (
+              <div className='vote'>Your Vote</div>
+            ) : (
+              ''
+            )}{' '}
+            <p className='mt-3'>{optionTwo.text}</p>
             <p>{`${optionTwo.votes.length} out of ${users.length} votes`}</p>
-
             <ProgressBar
               now={Math.round((optionTwo.votes.length / users.length) * 100)}
               label={`${Math.round(
@@ -83,7 +90,6 @@ function mapStateToProps({ questions, users, authedUser }, { id }) {
   console.log(question);
   console.log(users);
   return {
-    // users: users[question.author],
     question,
     user,
     id,

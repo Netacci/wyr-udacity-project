@@ -9,7 +9,7 @@ function Unanswered(props) {
 	console.log(users);
 	console.log(authedUser);
 	console.log(authedUser.answers);
-	//   console.log(authedUserAnswersID);
+
 	// function to seperate unanswered questions
 	const filterAnswer = (questionsID, authedUserAnswersID) => {
 		const filtered = questionsID.filter((el) => {
@@ -17,8 +17,8 @@ function Unanswered(props) {
 		});
 		return filtered;
 	};
+
 	console.log(filterAnswer(questionsID, authedUserAnswersID));
-	// console.log(questions);
 
 	return (
 		<>
@@ -35,16 +35,6 @@ function Unanswered(props) {
 
 const mapStateToProps = ({ users, questions, authedUser }) => {
 	const authedUserID = authedUser === null ? {} : users[authedUser].answers;
-	// const questionsID = Object.keys(state.questions).sort(
-	//   (a, b) => state.questions[b].timestamp - state.questions[a].timestamp
-	// );
-	// const authedUserID =
-	//   state.authedUser === null ? {} : state.users[state.authedUser].answers;
-	// let authedUserAnswer = authedUserID ? Object.keys(authedUserID) : [];
-	// authedUserAnswer = questionsID.filter(
-	//   (qid) => !authedUserAnswer.includes(qid)
-	// );
-
 	console.log(authedUserID);
 	console.log(users);
 	console.log(authedUser);
@@ -54,9 +44,7 @@ const mapStateToProps = ({ users, questions, authedUser }) => {
 		),
 		users: Object.entries(users),
 		authedUser: users[authedUser],
-		// questions: questionsID,
 		authedUserAnswersID: Object.keys(authedUserID),
-		// answeredq: authedUserAnswer,
 	};
 };
 

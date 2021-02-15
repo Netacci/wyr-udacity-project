@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser';
 import { connect } from 'react-redux';
+import { FiLogOut } from 'react-icons/fi';
 
 function NavComp(props) {
   const history = useHistory();
@@ -52,24 +53,26 @@ function NavComp(props) {
                 Leaderboard
               </NavLink>
             </Nav>
-          </Navbar.Collapse>
-          <Nav className='d-flex flex-row'>
-            <p className='nav-link mr-5 mt-1'>
-              Welcome{' '}
-              <span>
-                <img
-                  src={avatarURL}
-                  alt={`avatar of ${name}`}
-                  className='avatar'
-                />
-              </span>{' '}
-              {name}
-            </p>
 
-            <p onClick={handleLogout} className='nav-link logout mt-4'>
-              Logout
-            </p>
-          </Nav>
+            <Nav className='d-flex flex-row '>
+              <div className='nav-link mr-4 mt-1'>
+                Welcome{' '}
+                <span>
+                  <img
+                    src={avatarURL}
+                    alt={`avatar of ${name}`}
+                    className='avatar d-none d-lg-inline'
+                  />
+                </span>{' '}
+                {name}
+              </div>
+
+              <FiLogOut
+                onClick={handleLogout}
+                className='nav-link logout mt-lg-4 mt-1'
+              />
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </>

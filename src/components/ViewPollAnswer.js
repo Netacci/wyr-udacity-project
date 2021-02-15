@@ -19,7 +19,7 @@ function ViewPollAnswer(props) {
 
   return (
     <>
-      <Card key={id} className='mb-5 p-3  w-50 mx-auto '>
+      <Card key={id} className='mb-5 p-3  w-sm mx-auto '>
         <div className='d-flex flex-row'>
           <img src={avatarURL} alt={`avatar of ${name}`} className='avatar' />
           <p className='ml-4 mt-4 text'>{name}</p>
@@ -49,7 +49,6 @@ function mapStateToProps({ questions, users }, { id }) {
   console.log(question);
   console.log(users);
   return {
-    // users: users[question.author],
     question,
     user,
     id,
