@@ -4,7 +4,6 @@ import Question from './Question';
 import NavComp from './Nav';
 
 function UnansweredQuestion(props) {
-	console.log(props);
 	return (
 		<>
 			<NavComp />

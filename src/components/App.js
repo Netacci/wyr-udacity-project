@@ -20,6 +20,7 @@ function App(props) {
 	useEffect(() => {
 		props.fetchAll();
 	}, [props]);
+
 	return (
 		<Router>
 			<div>
@@ -41,7 +42,9 @@ function App(props) {
 						<PrivateRoute path='/unanswered' component={Unanswered} />
 						<PrivateRoute path='/answered' component={Answered} />
 						<PrivateRoute path='/leaderboard' component={LeaderBoard} />
+
 						<Route path='/signin' component={SignIn} />
+
 						<Route component={ErrorPage} />
 					</Switch>
 				</ValueProvider>

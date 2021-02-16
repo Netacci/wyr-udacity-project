@@ -4,7 +4,7 @@ import { ValueContext } from '../contexts/ValueContext';
 
 export default function PrivateRoute({ component: Component, ...rest }) {
 	const [value] = useContext(ValueContext);
-	console.log(value);
+	// console.log(value);
 
 	return (
 		<Route

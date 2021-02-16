@@ -5,10 +5,10 @@ import Card from '@material-ui/core/Card';
 function Poll(props) {
   const id = props.id;
   const user = props.users[id];
-  console.log(props.id);
-  console.log(props.users);
-  console.log(props.users[id]);
-  console.log(user);
+//   console.log(props.id);
+//   console.log(props.users);
+//   console.log(props.users[id]);
+//   console.log(user);
 
   return (
     <>

@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import ViewPoll from './ViewPoll';
 
 function Unanswered(props) {
-	console.log(props.questionsID);
-	const { users, authedUser, questionsID, authedUserAnswersID } = props;
-	console.log(users);
-	console.log(authedUser);
-	console.log(authedUser.answers);
+	const { questionsID, authedUserAnswersID } = props;
+	// console.log(users);
+	// console.log(authedUser);
+	// console.log(authedUser.answers);
 
 	// function to seperate unanswered questions
 	const filterAnswer = (questionsID, authedUserAnswersID) => {
@@ -18,7 +17,7 @@ function Unanswered(props) {
 		return filtered;
 	};
 
-	console.log(filterAnswer(questionsID, authedUserAnswersID));
+	// console.log(filterAnswer(questionsID, authedUserAnswersID));
 
 	return (
 		<>
@@ -35,9 +34,9 @@ function Unanswered(props) {
 
 const mapStateToProps = ({ users, questions, authedUser }) => {
 	const authedUserID = authedUser === null ? {} : users[authedUser].answers;
-	console.log(authedUserID);
-	console.log(users);
-	console.log(authedUser);
+	// console.log(authedUserID);
+	// console.log(users);
+	// console.log(authedUser);
 	return {
 		questionsID: Object.keys(questions).sort(
 			(a, b) => questions[b].timestamp - questions[a].timestamp

@@ -9,7 +9,6 @@ import { setAuthedUser } from '../actions/authedUser';
 const SignIn = (props) => {
 	const [value, setValue] = useContext(ValueContext);
 	const history = useHistory();
-	console.log(value);
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -18,7 +17,7 @@ const SignIn = (props) => {
 
 		history.push('/');
 	}
-	console.log(value);
+	// console.log(value);
 
 	const handleChange = (e) => {
 		console.log(e.target.value);
@@ -57,7 +56,7 @@ const SignIn = (props) => {
 };
 
 const mapStateToProps = ({ users }) => {
-	console.log(users);
+	// console.log(users);
 	return {
 		users: Object.entries(users),
 	};
